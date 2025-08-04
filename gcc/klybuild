@@ -1,0 +1,26 @@
+#!/usr/bin/env bash
+name="libgcc"
+version="13.1.0"
+description="libgcc"
+source=""
+depends=""
+builddepend=""
+group="sys.fs"
+
+setup(){
+mkdir -p $SOURCEDIR
+cd $SOURCEDIR
+#dosya indiriliyor
+wget -O libgcc.kly https://github.com/kendilinuxunuyap/kly-binary-packages/raw/refs/heads/master/libgcc/libgcc-13.1.0.kly
+# tar -xf libgcc.kly
+tar -xf libgcc.kly
+tar -xf rootfs.tar.xz -C $BUILDDIR
+}
+build(){
+echo ""
+}
+package(){
+cd $BUILDDIR
+cp -prfv $BUILDDIR/* ${DESTDIR}/
+${DESTDIR}/sbin/ldconfig -r ${DESTDIR}
+}

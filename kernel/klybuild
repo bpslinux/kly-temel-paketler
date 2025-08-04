@@ -1,0 +1,24 @@
+#!/usr/bin/env bash
+version="6.10.8"
+name="linux-image"
+depends=""
+description="temel dağıtım kernel dosyası ve moduller"
+source=""
+groups="sys.base"
+
+setup(){
+	cd $SOURCEDIR
+	wget -O kernel.kly https://github.com/kendilinuxunuyap/kly-binary-packages/raw/master/kernel/kernel-6.10.8.kly
+	tar -xf kernel.kly
+	tar -xf rootfs.tar.xz
+}
+build(){
+	echo ""
+}
+package(){
+	cd $SOURCEDIR
+	cp -prfv boot ${DESTDIR}/
+	cp -prfv lib/* ${DESTDIR}/lib/
+	find ${DESTDIR}/ -iname "*" -exec unxz {} \;
+
+}
