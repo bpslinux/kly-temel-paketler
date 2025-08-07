@@ -36,7 +36,7 @@ package()
 	install $SOURCEDIR/files/modules ${DESTDIR}/usr/share/initramfs-tools/
 	install $SOURCEDIR/files/modules ${DESTDIR}/etc/initramfs-tools/
 	mkdir -p ${DESTDIR}/usr/share/initramfs-tools/conf-hooks.d
-	install $SOURCEDIR/conf-hooks.d/busybox ${DESTDIR}/usr/share/initramfs-tools/conf-hooks.d/
+	install $SOURCEDIR/files/conf-hooks.d/busybox ${DESTDIR}/usr/share/initramfs-tools/conf-hooks.d/
 	mkdir -p ${DESTDIR}/etc/initramfs-tools/scripts
 	${DESTDIR}/sbin/ldconfig -r ${DESTDIR}
 }
