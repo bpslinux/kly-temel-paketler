@@ -7,9 +7,10 @@ source="https://github.com/eudev-project/eudev/releases/download/v${version}/${n
 groups="sys.fs"
 setup()
 {
-	cp -prvf $PACKAGEDIR/files /tmp/bps/build/
+	cp -prvf $PACKAGEDIR/files /tmp/kly/build/
 
-	$SOURCEDIR/configure --prefix=/usr \
+	cd $SOURCEDIR
+	./configure --prefix=/usr \
 		--bindir=/sbin \
 		--sbindir=/sbin \
 		--libdir=/lib64 \
