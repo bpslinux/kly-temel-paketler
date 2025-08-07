@@ -7,38 +7,25 @@ depends="libaio"
 builddepend=""
 group="sys.fs"
 
-setup(){
-	cd $SOURCEDIR
-	./configure --prefix=/usr \
-		--libdir=/usr/lib64/  \
-		CONFIG_SHELL=/bin/bash \
-		--sbindir=/usr/bin \
-		--sysconfdir=/etc \
-		--localstatedir=/var \
-		--enable-cmdlib \
-		--enable-dmeventd \
-		--enable-lvmpolld \
-		--enable-pkgconfig \
-		--enable-readline \
-		--enable-udev_rules \
-		--enable-udev_sync \
-		--enable-write_install \
-		--disable-systemd \
-		--with-cache=internal \
-		--with-default-dm-run-dir=/run \
-		--with-default-locking-dir=/run/lock/lvm \
-		--with-default-pid-dir=/run \
-		--with-default-run-dir=/run/lvm \
-		--with-thin=internal \
-		--with-udev-prefix=/usr
-}
-
-build(){
-    make
-}
-
-package() {
-    make install DESTDIR=$DESTDIR
-}
-
+	setup(){
+		mkdir -p $SOURCEDIR
+		cd $SOURCEDIR
+		#dosya indiriliyor
+		wget -O lvm2.kly https://github.com/kendilinuxunuyap/kly-binary-packages/raw/refs/heads/master/ext-lvm2/ext-lvm2-2_03_21.kly
+		# tar -xf lvm2.kly
+		tar -xf lvm2.kly
+		tar -xf rootfs.tar.xz -C $BUILDDIR
+	}
+	build(){
+	echo ""
+	}
+	package(){
+		cd $SOURCEDIR
+		cp -prfv $BUILDDIR/* ${DESTDIR}/
+		mkdir -p $DESTDIR/lib64
+		cd $DESTDIR/lib64
+		ln -s ../usr/lib64/libdevmapper.so.1.02 libdevmapper.so.1.02.1
+		${DESTDIR}/sbin/ldconfig -r ${DESTDIR}
+		# sistem guncelleniyor
+	}
 
