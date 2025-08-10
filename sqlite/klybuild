@@ -8,6 +8,7 @@ depends="zlib,readline"
 group="dev.db"
 
 setup(){
+    #cd $name-autoconf-$srcver
     cd $SOURCEDIR
     ./configure --prefix=/usr \
         --libdir=/usr/lib64 \

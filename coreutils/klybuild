@@ -2,12 +2,13 @@
 name="coreutils"
 version="9.5"
 description="The basic file, shell and text manipulation utilities of the GNU operating system"
-source="https://ftp.gnu.org/gnu/coreutils/coreutils-$version.tar.xz"
+source="https://ftp.gnu.org/gnu/coreutils/coreutils-$version.tar.gz"
 depends="acl,attr,gmp,libcap,openssl"
 group="sys.apps"
 
-export CFLAGS="-static-libgcc -static-libstdc++ -fPIC"
 
+export CFLAGS="-static-libgcc -static-libstdc++ -fPIC"
+#set FORCE_UNSAFE_CONFIGURE=1
 setup(){
 
   FORCE_UNSAFE_CONFIGURE=1  $SOURCEDIR/configure --prefix=/usr \

@@ -11,7 +11,7 @@ setup()
 	cd $SOURCEDIR
     ./configure --prefix=/usr \
 	--libdir=/usr/lib64 \
-	--enable-cxx \
+		$(use_opt cxx --enable-cxx --disable-cxx) \
 	--enable-fat
 }
 build()

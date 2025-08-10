@@ -4,9 +4,9 @@ name="glibc"
 depends=""
 description="temel kütüphane"
 source="https://ftp.gnu.org/gnu/libc/${name}-${version}.tar.gz"
-groups="sys.base"
 
-	export CC="gcc"
+groups="sys.base"
+export CC="gcc"
     export CXX="g++"
    #	cd $SOURCEDIR
    # mkdir glibc-build
@@ -36,7 +36,8 @@ setup()
     
       	echo "slibdir=/lib64" >> configparms
     	echo "rtlddir=/lib64" >> configparms
-    	$SOURCEDIR/configure ${opts[@]} \
+    	
+    	../${name}-${version}/configure ${opts[@]} \
         --host=x86_64-pc-linux-gnu \
         --libdir=/lib64 \
         --libexecdir=/lib64/glibc
@@ -45,7 +46,7 @@ setup()
 }
 build()
 {
-    make
+    make -j5 #-C $DESTDIR all
 
 }
 package()

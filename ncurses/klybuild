@@ -6,7 +6,6 @@ depends="glibc"
 description="ncurses kütüphanesi"
 source="https://ftp.gnu.org/pub/gnu/ncurses/${name}-${version}.tar.gz"
 groups="sys.libs"
-
 setup()
 {
 	cd $SOURCEDIR
@@ -24,6 +23,8 @@ setup()
         --with-manpage-format=normal \
         --with-xterm-kbs=del \
         --with-pkg-config-libdir=/usr/lib64/pkgconfig
+
+    #    --without-ada
 }
 build()
 {
